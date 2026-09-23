@@ -149,49 +149,131 @@ function animateCounter(element, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
-// Hero Slider with interactive dots
-export function initHeroSlider(banners) {
-    const bgElement = document.getElementById('hero-slider-bg');
-    const dotsWrap = document.getElementById('hero-slide-dots');
-    if (!bgElement || !banners || banners.length === 0) return;
+// Hero Slider Carousel Controller
+export function initHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const tabs = document.querySelectorAll('.hero-tab-item');
+    const prevBtn = document.getElementById('hero-prev-btn');
+    const nextBtn = document.getElementById('hero-next-btn');
+    const progressFill = document.getElementById('hero-progress-fill');
+    const container = document.getElementById('hero-slider-container');
+
+    if (slides.length === 0) return;
 
     let currentIndex = 0;
-    bgElement.style.backgroundImage = `url('${banners[0]}')`;
+    let autoPlayTimer = null;
+    let progressTimer = null;
+    const slideDuration = 6000;
+    const progressInterval = 50;
 
-    function updateHeroSlide(index) {
-        currentIndex = index;
-        bgElement.style.opacity = '0.1';
-        setTimeout(() => {
-            bgElement.style.backgroundImage = `url('${banners[currentIndex]}')`;
-            bgElement.style.opacity = '0.45';
-        }, 300);
+    function goToSlide(index) {
+        currentIndex = (index + slides.length) % slides.length;
 
-        if (dotsWrap) {
-            dotsWrap.querySelectorAll('.hero-slide-dot').forEach((dot, i) => {
-                if (i === currentIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-        }
+        slides.forEach((slide, i) => {
+            if (i === currentIndex) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+
+        tabs.forEach((tab, i) => {
+            if (i === currentIndex) {
+                tab.classList.add('active');
+            } else {
+                tab.classList.remove('active');
+            }
+        });
+
+        resetProgress();
     }
 
-    if (dotsWrap) {
-        dotsWrap.querySelectorAll('.hero-slide-dot').forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                const targetSlide = parseInt(dot.dataset.slide);
-                if (!isNaN(targetSlide)) {
-                    updateHeroSlide(targetSlide);
-                }
-            });
+    function resetProgress() {
+        if (progressTimer) clearInterval(progressTimer);
+        if (!progressFill) return;
+
+        progressFill.style.width = '0%';
+        let elapsed = 0;
+
+        progressTimer = setInterval(() => {
+            elapsed += progressInterval;
+            const pct = Math.min((elapsed / slideDuration) * 100, 100);
+            progressFill.style.width = pct + '%';
+            if (elapsed >= slideDuration) {
+                clearInterval(progressTimer);
+            }
+        }, progressInterval);
+    }
+
+    function startAutoPlay() {
+        stopAutoPlay();
+        resetProgress();
+        autoPlayTimer = setInterval(() => {
+            goToSlide(currentIndex + 1);
+        }, slideDuration);
+    }
+
+    function stopAutoPlay() {
+        if (autoPlayTimer) clearInterval(autoPlayTimer);
+        if (progressTimer) clearInterval(progressTimer);
+        if (progressFill) progressFill.style.width = '0%';
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            goToSlide(currentIndex - 1);
+            startAutoPlay();
         });
     }
 
-    setInterval(() => {
-        const nextIndex = (currentIndex + 1) % banners.length;
-        updateHeroSlide(nextIndex);
-    }, 6000);
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            goToSlide(currentIndex + 1);
+            startAutoPlay();
+        });
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetIndex = parseInt(tab.dataset.slide);
+            if (!isNaN(targetIndex)) {
+                goToSlide(targetIndex);
+                startAutoPlay();
+            }
+        });
+    });
+
+    if (container) {
+        container.addEventListener('mouseenter', () => {
+            if (autoPlayTimer) clearInterval(autoPlayTimer);
+            if (progressTimer) clearInterval(progressTimer);
+        });
+
+        container.addEventListener('mouseleave', () => {
+            startAutoPlay();
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        container.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                goToSlide(currentIndex + 1);
+                startAutoPlay();
+            } else if (touchEndX - touchStartX > 50) {
+                goToSlide(currentIndex - 1);
+                startAutoPlay();
+            }
+        }, { passive: true });
+    }
+
+    goToSlide(0);
+    startAutoPlay();
 }
 
 // Testimonial slider

@@ -97,66 +97,182 @@
     <!-- PAGE VIEW 1: HOME (EXACT 1:1 SECTION ORDER OF LUXURYCLUB.CO.IN) -->
     <div id="view-home" class="page-view active">
 
-        <!-- SECTION 3: HERO BANNER SLIDER SECTION -->
+        <!-- SECTION 3: HERO BANNER SLIDER SECTION (MATCHING LUXURYCLUB.CO.IN) -->
         <section class="hero-section">
-            <div class="hero-slider-bg" id="hero-slider-bg"></div>
-            <div class="hero-aura-orb-1"></div>
-            <div class="hero-aura-orb-2"></div>
-            <div class="hero-bg-overlay"></div>
-            
-            <div class="container hero-content">
-                <div class="hero-badge reveal-on-scroll">
-                    <i class="bi bi-stars" style="color: var(--accent-gold);"></i>
-                    <span class="label-gold" style="margin: 0;">BEST ATTAR & EAU DE PARFUM IN INDIA</span>
+            <div class="hero-slider-container" id="hero-slider-container">
+                
+                <!-- Golden Auto-Play Progress Line -->
+                <div class="hero-progress-line-track">
+                    <div class="hero-progress-line-fill" id="hero-progress-fill"></div>
                 </div>
 
-                <h1 class="hero-title reveal-on-scroll">
-                    SCENT THAT <span>MAKES AN ENTRANCE.</span>
-                </h1>
+                <!-- Floating Aura Orbs for Visual Depth -->
+                <div class="hero-aura-orb-left"></div>
+                <div class="hero-aura-orb-right"></div>
 
-                <p class="hero-description reveal-on-scroll">
-                    Luxury Club offers you the finest artisanal Attars, concentrated Eau De Parfums, and bespoke Gift Sets for Men & Women with long-lasting premium fragrance projection at the best price.
-                </p>
+                <!-- Left & Right Glassmorphism Navigation Arrows -->
+                <button class="hero-nav-arrow prev" id="hero-prev-btn" aria-label="Previous Slide">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="hero-nav-arrow next" id="hero-next-btn" aria-label="Next Slide">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
 
-                <div class="hero-cta-group reveal-on-scroll">
-                    <a href="#/collection" class="btn-primary">
-                        <span>EXPLORE COLLECTION</span>
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                    <a href="#/aboutus" class="btn-secondary">
-                        <span>OUR 17-YEAR STORY</span>
-                    </a>
+                <!-- Slides Wrapper -->
+                <div class="hero-slides-wrapper" id="hero-slides-wrapper">
+
+                    <!-- SLIDE 1 -->
+                    <div class="hero-slide active" data-slide-index="0">
+                        <div class="hero-slide-bg" style="background-image: url('https://www.luxuryclub.co.in/images/banner2.png');"></div>
+                        <div class="hero-slide-overlay"></div>
+                        <div class="container hero-slide-content">
+                            <div class="hero-slide-inner">
+                                <div class="anim-target">
+                                    <div class="hero-badge">
+                                        <i class="bi bi-gift-fill" style="color: var(--accent-gold);"></i>
+                                        <span class="label-gold" style="margin: 0;">FREE GIFT ON ALL PREPAID ORDERS</span>
+                                    </div>
+                                </div>
+                                <div class="anim-target">
+                                    <h1 class="hero-title">
+                                        ARTISANAL ATTARS & <span>EAU DE PARFUM</span>
+                                    </h1>
+                                </div>
+                                <div class="anim-target">
+                                    <p class="hero-description">
+                                        Luxury Club offers you pure concentrated fragrance oils and Eau De Parfums with 24+ hours long-lasting projection at the best price in India.
+                                    </p>
+                                </div>
+                                <div class="anim-target">
+                                    <div class="hero-cta-group" style="justify-content: flex-start;">
+                                        <a href="#/collection" class="btn-primary">
+                                            <span>EXPLORE COLLECTION</span>
+                                            <i class="bi bi-arrow-right"></i>
+                                        </a>
+                                        <button class="btn-secondary" onclick="document.getElementById('open-booking-btn').click();">
+                                            <i class="bi bi-calendar-check" style="color: var(--accent-gold);"></i>
+                                            <span>ONLINE BOOKING</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 2 -->
+                    <div class="hero-slide" data-slide-index="1">
+                        <div class="hero-slide-bg" style="background-image: url('https://www.luxuryclub.co.in/images/banner1.png');"></div>
+                        <div class="hero-slide-overlay"></div>
+                        <div class="container hero-slide-content">
+                            <div class="hero-slide-inner">
+                                <div class="anim-target">
+                                    <div class="hero-badge">
+                                        <i class="bi bi-stars" style="color: var(--accent-gold);"></i>
+                                        <span class="label-gold" style="margin: 0;">17+ YEARS OF BESPOKE HERITAGE</span>
+                                    </div>
+                                </div>
+                                <div class="anim-target">
+                                    <h1 class="hero-title">
+                                        SCENT THAT <span>MAKES AN ENTRANCE.</span>
+                                    </h1>
+                                </div>
+                                <div class="anim-target">
+                                    <p class="hero-description">
+                                        Elevate your aesthetic with Indian and foreign luxury fragrance ranges created to leave an indelible impression.
+                                    </p>
+                                </div>
+                                <div class="anim-target">
+                                    <div class="hero-cta-group" style="justify-content: flex-start;">
+                                        <a href="#/collection/perfume" class="btn-primary">
+                                            <span>SHOP EAU DE PARFUM</span>
+                                            <i class="bi bi-bag-check"></i>
+                                        </a>
+                                        <a href="#/aboutus" class="btn-secondary">
+                                            <span>OUR 17-YEAR STORY</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 3 -->
+                    <div class="hero-slide" data-slide-index="2">
+                        <div class="hero-slide-bg" style="background-image: url('https://www.luxuryclub.co.in/images/banner3.png');"></div>
+                        <div class="hero-slide-overlay"></div>
+                        <div class="container hero-slide-content">
+                            <div class="hero-slide-inner">
+                                <div class="anim-target">
+                                    <div class="hero-badge">
+                                        <i class="bi bi-box-seam-fill" style="color: var(--accent-gold);"></i>
+                                        <span class="label-gold" style="margin: 0;">ROYAL GIFT SETS & CAR PODS</span>
+                                    </div>
+                                </div>
+                                <div class="anim-target">
+                                    <h1 class="hero-title">
+                                        LUXURY PERFUME <span>GIFT COLLECTION</span>
+                                    </h1>
+                                </div>
+                                <div class="anim-target">
+                                    <p class="hero-description">
+                                        Discover royal presentation gift boxes and ambient car hanging diffuser pods crafted for unforgettable scenting experiences.
+                                    </p>
+                                </div>
+                                <div class="anim-target">
+                                    <div class="hero-cta-group" style="justify-content: flex-start;">
+                                        <a href="#/collection/gift-perfume" class="btn-primary">
+                                            <span>EXPLORE GIFT SETS</span>
+                                            <i class="bi bi-gift"></i>
+                                        </a>
+                                        <a href="#/collection/car-perfume" class="btn-secondary">
+                                            <span>CAR PERFUMES</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- Luxury Feature Callout Chips -->
-                <div class="hero-chips-wrap reveal-on-scroll">
-                    <div class="hero-chip">
-                        <i class="bi bi-droplet-fill" style="color: var(--accent-gold);"></i>
-                        <span>100% Pure Concentrated Oils</span>
+                <!-- Bottom Slide Indicator Tabs -->
+                <div class="hero-controls-bar" id="hero-controls-bar">
+                    <div class="hero-tab-item active" data-slide="0">
+                        <i class="bi bi-circle-fill" style="font-size: 0.45rem;"></i>
+                        <span>01. COMBO & ATTARS</span>
                     </div>
-                    <div class="hero-chip">
-                        <i class="bi bi-clock-history" style="color: var(--accent-gold);"></i>
-                        <span>24+ Hours Projection</span>
+                    <div class="hero-tab-item" data-slide="1">
+                        <i class="bi bi-circle-fill" style="font-size: 0.45rem;"></i>
+                        <span>02. EAU DE PARFUM</span>
                     </div>
-                    <div class="hero-chip">
-                        <i class="bi bi-gift-fill" style="color: var(--accent-gold);"></i>
-                        <span>Free Gift On Prepaid Orders</span>
+                    <div class="hero-tab-item" data-slide="2">
+                        <i class="bi bi-circle-fill" style="font-size: 0.45rem;"></i>
+                        <span>03. GIFT SETS & CAR PODS</span>
                     </div>
                 </div>
 
-                <!-- Interactive Hero Banner Slide Indicators -->
-                <div class="hero-slide-indicators reveal-on-scroll" id="hero-slide-dots">
-                    <div class="hero-slide-dot active" data-slide="0">
-                        <i class="bi bi-circle-fill" style="font-size: 0.5rem;"></i>
-                        <span>BANNER 01</span>
-                    </div>
-                    <div class="hero-slide-dot" data-slide="1">
-                        <i class="bi bi-circle-fill" style="font-size: 0.5rem;"></i>
-                        <span>BANNER 02</span>
-                    </div>
-                    <div class="hero-slide-dot" data-slide="2">
-                        <i class="bi bi-circle-fill" style="font-size: 0.5rem;"></i>
-                        <span>BANNER 03</span>
+            </div>
+
+            <!-- Hero Feature Ribbon Strip -->
+            <div class="hero-feature-ribbon">
+                <div class="container">
+                    <div class="hero-ribbon-grid">
+                        <div class="hero-ribbon-item">
+                            <i class="bi bi-droplet-fill"></i>
+                            <span>100% Pure Concentrated Oils</span>
+                        </div>
+                        <div class="hero-ribbon-item">
+                            <i class="bi bi-clock-history"></i>
+                            <span>24+ Hours Projection</span>
+                        </div>
+                        <div class="hero-ribbon-item">
+                            <i class="bi bi-gift-fill"></i>
+                            <span>Free Gift On Prepaid Orders</span>
+                        </div>
+                        <div class="hero-ribbon-item">
+                            <i class="bi bi-award-fill"></i>
+                            <span>17+ Years Perfumery Expertise</span>
+                        </div>
                     </div>
                 </div>
             </div>

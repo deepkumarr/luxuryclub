@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeaderScroll();
     initScrollReveals();
     initCounterAnimation();
-    initHeroSlider(BRAND_INFO.heroBanners);
+    initHeroSlider();
     initTestimonialSlider(TESTIMONIALS);
     init3DTiltEffect();
 
